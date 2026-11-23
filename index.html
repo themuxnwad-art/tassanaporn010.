@@ -1,0 +1,96 @@
+
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>หน้าแรก | เที่ยวบ้านเรา</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <p class="site-name">เที่ยวบ้านเรา</p>
+    <nav aria-label="เมนูหลัก">
+      <ul>
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="places.html">ที่เที่ยว</a></li>
+        <li><a href="food.html">อาหาร</a></li>
+        <li><a href="plan.html">วางแผนเที่ยว</a></li>
+        <li><a href="travel.html">ข้อมูลการเดินทาง</a></li>
+         <li><a href="login.html">เข้าสู่ระบบ</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>เที่ยวบ้านเราในหนึ่งวัน</h1>
+    <p class="intro">สถานที่ท่องเที่ยวจังหวัดประจวบคีรีขันธ์</p>
+
+    <!-- แกลเลอรี่รูปภาพ -->
+    <section class="gallery">
+      <div class="slider">
+        <div class="slides">
+          <img src="images/sapanpla.jpg" alt="สะพานริมทะเล">
+          <img src="images/KLM.jpg" alt="ชายหาดและเกาะ">
+          <img src="images/Kaow.jpg" alt="สถานที่ท่องเที่ยวริมทะเล">
+          <img src="images/aomanow.jpg" alt="วิวทะเลมุมสูง">
+          <img src="images/lukmuang.jpg" alt="วัดบนภูเขา">
+        </div>
+      </div>
+
+      <!-- จุดบอกตำแหน่งรูปภาพ -->
+      <div class="slider-dots">
+        <button class="dot active" aria-label="รูปที่ 1"></button>
+        <button class="dot" aria-label="รูปที่ 2"></button>
+        <button class="dot" aria-label="รูปที่ 3"></button>
+        <button class="dot" aria-label="รูปที่ 4"></button>
+        <button class="dot" aria-label="รูปที่ 5"></button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>เริ่มจากจุดที่คุณสนใจ</h2>
+      <p>เลือกสถานที่ที่อยากไป แล้วจัดเส้นทางให้เหมาะกับเวลาของคุณ</p>
+      <a class="button" href="places.html">ดูแหล่งท่องเที่ยว</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>ชื่อ-นามสกุล พร้อมรหัสประจำตัว | ใบงานฝึกปฏิบัติวิชาการสร้างเว็บไซต์ทางธุรกิจ</p>
+  </footer>
+
+  <script>
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+
+    let currentSlide = 0;
+    const totalSlides = dots.length;
+
+    function showSlide(index) {
+      currentSlide = index;
+
+      slides.style.transform =
+        `translateX(-${currentSlide * 100}%)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+    }
+
+    // กดจุดเพื่อเปลี่ยนรูปภาพ
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+      });
+    });
+
+    // เปลี่ยนรูปภาพอัตโนมัติทุก 3 วินาที
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, 3000);
+  </script>
+
+</body>
+</html>
